@@ -62,7 +62,7 @@ export default function LoginForm() {
         } catch (error) {
             console.error(error);
         } finally {
-            router.push("/");
+            router.push("/admin");
         }
     };
 
