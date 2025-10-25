@@ -3,6 +3,7 @@ type Transaction = {
     amount: number
     status: "success" | "pending" | "failed"
     transactionId: string
+    investor: string
 }
 
 const statuses: Transaction["status"][] = ["success", "pending", "failed"]
@@ -13,11 +14,13 @@ export const transactions: Transaction[] = Array.from({ length: 30 }, (_, i) => 
     const day = (i % 28) + 1
     const month = "Oct"
     const year = 2025
+    const investor = `Mathew Carter ${i + 1}`
 
     return {
         date: `${day} ${month}, ${year}`,
         amount: randomAmount,
         status: randomStatus,
         transactionId: `TXN-${Math.floor(100000 + Math.random() * 900000)}`,
+        investor: investor,
     }
 })

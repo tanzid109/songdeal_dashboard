@@ -1,8 +1,8 @@
-import { StatCard } from "./StatcCard";
+import { StatCard } from "./StatCard";
 
 const TotalStats = () => {
     return (
-        <div className="flex items-center justify-between gap-4 ">
+        <div className="grid  grid-cols-4 gap-4">
             <StatCard title="Total Artists" value={45586} icon="👥" />
             <StatCard title="Total Investors" value={5454} icon="📈" />
             <StatCard title="Total Catalogs Uploaded" value={26845} icon="📂" />

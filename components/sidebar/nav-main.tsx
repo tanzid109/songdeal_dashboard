@@ -89,12 +89,12 @@ function NavItem({
                                             alt={item.title}
                                             width={24}
                                             height={24}
-                                            className="!w-[24px] !h-[24px]"
+                                            className="w-6! h-6!"
                                         />
                                     ) : (
                                         <item.icon
                                             size={24}
-                                            className="text-xl text-inherit !w-[24px] !h-[24px]"
+                                            className="text-xl text-inherit w-6! h-6!"
                                         />
                                     )}
                                     <span className="flex-1">{item.title}</span>

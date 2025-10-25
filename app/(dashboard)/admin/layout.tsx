@@ -46,7 +46,7 @@ export default function RootLayout({
                                 <h3 className="font-semibold text-2xl">Overview</h3>
                             </div>
                             <div className="mr-10 my-1 h-[72px] w-[72px] rounded-full overflow-hidden">
-                                <Link href="/dashboard/settings/basic">
+                                <Link href="/admin/settings/basic">
                                     <Image
                                         src="/assets/user1.jpg"
                                         width={72}

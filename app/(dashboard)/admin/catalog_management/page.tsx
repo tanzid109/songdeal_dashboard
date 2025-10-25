@@ -1,10 +1,10 @@
-import Catalog from '@/dashboard/artist/Catalog';
+import CatalogTable from '@/dashboard/catalog/CatalogTable';
 import React from 'react';
 
 const page = () => {
     return (
         <div>
-            <Catalog />
+            <CatalogTable />
         </div>
     );
 };
