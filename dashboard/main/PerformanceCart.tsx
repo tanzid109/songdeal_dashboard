@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import {
     AreaChart,
     Area,
@@ -9,7 +8,6 @@ import {
     Tooltip,
     ResponsiveContainer,
 } from "recharts";
-import { Layers } from "lucide-react";
 
 const data = [
     { month: "Jan", followers: 550, plays: 220 },
@@ -28,93 +26,98 @@ const data = [
 
 export default function PerformanceChart() {
     return (
-        <div className="rounded-lg bg-gradient-to-br from-slate-50 to-blue-50 flex items-center justify-center">
-            <div className="w-full bg-white rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8">
-                {/* Header */}
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 sm:mb-8 gap-4 sm:gap-6">
-                    <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 sm:w-16 sm:h-16 bg-indigo-100 rounded-2xl flex items-center justify-center">
-                            <Layers className="w-6 h-6 sm:w-8 sm:h-8 text-indigo-600" />
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-8">
+            <div className="max-w-7xl mx-auto">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                    {/* Left Info Panel */}
+                    <div className="bg-white rounded-2xl shadow-sm p-8">
+                        <h1 className="text-2xl font-bold text-gray-900 mb-2">Dashboard</h1>
+                        <p className="text-sm text-gray-500 mb-8">Overview of Latest Month</p>
+
+                        <div className="mb-8">
+                            <p className="text-sm text-gray-600 mb-2">User Growth</p>
+                            <p className="text-4xl font-bold text-emerald-500">+15%</p>
                         </div>
-                        <div>
-                            <h1 className="text-xl sm:text-2xl font-bold text-gray-900">
-                                Performance Chart
-                            </h1>
-                            <p className="text-sm sm:text-base text-gray-500">Monthly Growth</p>
-                        </div>
+
+                        <button className="w-full px-6 py-3 border-2 border-gray-200 rounded-full text-gray-700 font-medium hover:bg-gray-50 transition-colors">
+                            Last Month Summary
+                        </button>
                     </div>
 
-                    <div className="flex flex-wrap gap-3 sm:gap-6">
-                        <div className="flex items-center gap-2">
-                            <div className="w-3 h-3 bg-indigo-500 rounded-full"></div>
-                            <span className="text-sm text-gray-600">Followers</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <div className="w-3 h-3 bg-cyan-500 rounded-full"></div>
-                            <span className="text-sm text-gray-600">Plays</span>
+                    {/* Chart Panel */}
+                    <div className="lg:col-span-2 bg-white rounded-2xl shadow-sm p-8">
+                        <div className="w-full h-96">
+                            <ResponsiveContainer width="100%" height="100%">
+                                <AreaChart
+                                    data={data}
+                                    margin={{ top: 20, right: 20, left: -20, bottom: 0 }}
+                                >
+                                    <defs>
+                                        <linearGradient id="colorFollowers" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset="5%" stopColor="#6366f1" stopOpacity={0.4} />
+                                            <stop offset="95%" stopColor="#6366f1" stopOpacity={0.05} />
+                                        </linearGradient>
+                                        <linearGradient id="colorPlays" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset="5%" stopColor="#06b6d4" stopOpacity={0.4} />
+                                            <stop offset="95%" stopColor="#06b6d4" stopOpacity={0.05} />
+                                        </linearGradient>
+                                    </defs>
+                                    <CartesianGrid
+                                        strokeDasharray="5 5"
+                                        stroke="#e0e0e0"
+                                        horizontal={true}
+                                        vertical={false}
+                                    />
+                                    <XAxis
+                                        dataKey="month"
+                                        stroke="#9ca3af"
+                                        style={{ fontSize: "13px", fontWeight: "500" }}
+                                        axisLine={false}
+                                        tickLine={false}
+                                        dy={10}
+                                    />
+                                    <YAxis
+                                        stroke="#9ca3af"
+                                        style={{ fontSize: "13px", fontWeight: "500" }}
+                                        axisLine={false}
+                                        tickLine={false}
+                                        domain={[0, 600]}
+                                        ticks={[0, 100, 200, 300, 400, 500, 600]}
+                                    />
+                                    <Tooltip
+                                        contentStyle={{
+                                            backgroundColor: "white",
+                                            border: "1px solid #e5e7eb",
+                                            borderRadius: "12px",
+                                            boxShadow: "0 10px 15px -3px rgb(0 0 0 / 0.1)",
+                                            padding: "12px",
+                                        }}
+                                        labelStyle={{
+                                            color: "#374151",
+                                            fontWeight: "600",
+                                            marginBottom: "4px"
+                                        }}
+                                    />
+                                    <Area
+                                        type="monotone"
+                                        dataKey="followers"
+                                        stroke="#6366f1"
+                                        strokeWidth={3}
+                                        fillOpacity={1}
+                                        fill="url(#colorFollowers)"
+                                    />
+                                    <Area
+                                        type="monotone"
+                                        dataKey="plays"
+                                        stroke="#06b6d4"
+                                        strokeWidth={3}
+                                        fillOpacity={1}
+                                        fill="url(#colorPlays)"
+                                    />
+                                </AreaChart>
+                            </ResponsiveContainer>
                         </div>
                     </div>
-                </div>
-
-                {/* Chart */}
-                <div className="w-full h-84">
-                    <ResponsiveContainer width="100%" height="100%">
-                        <AreaChart
-                            data={data}
-                            margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
-                        >
-                            <defs>
-                                <linearGradient id="colorFollowers" x1="0" y1="0" x2="0" y2="1">
-                                    <stop offset="5%" stopColor="#6366f1" stopOpacity={0.3} />
-                                    <stop offset="95%" stopColor="#6366f1" stopOpacity={0.05} />
-                                </linearGradient>
-                                <linearGradient id="colorPlays" x1="0" y1="0" x2="0" y2="1">
-                                    <stop offset="5%" stopColor="#06b6d4" stopOpacity={0.3} />
-                                    <stop offset="95%" stopColor="#06b6d4" stopOpacity={0.05} />
-                                </linearGradient>
-                            </defs>
-                            <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" vertical={false} />
-                            <XAxis
-                                dataKey="month"
-                                stroke="#9ca3af"
-                                style={{ fontSize: "12px" }}
-                                axisLine={false}
-                                tickLine={false}
-                            />
-                            <YAxis
-                                stroke="#9ca3af"
-                                style={{ fontSize: "12px" }}
-                                axisLine={false}
-                                tickLine={false}
-                                domain={[0, 600]}
-                                ticks={[0, 100, 200, 300, 400, 500, 600]}
-                            />
-                            <Tooltip
-                                contentStyle={{
-                                    backgroundColor: "white",
-                                    border: "1px solid #e5e7eb",
-                                    borderRadius: "8px",
-                                    boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
-                                }}
-                            />
-                            <Area
-                                type="monotone"
-                                dataKey="followers"
-                                stroke="#6366f1"
-                                strokeWidth={3}
-                                fillOpacity={1}
-                                fill="url(#colorFollowers)"
-                            />
-                            <Area
-                                type="monotone"
-                                dataKey="plays"
-                                stroke="#06b6d4"
-                                strokeWidth={3}
-                                fillOpacity={1}
-                                fill="url(#colorPlays)"
-                            />
-                        </AreaChart>
-                    </ResponsiveContainer>
                 </div>
             </div>
         </div>

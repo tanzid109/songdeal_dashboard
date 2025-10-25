@@ -10,7 +10,7 @@ import {
 import { TeamSwitcher } from "./team-switcher"
 import { NavMain } from "./nav-main"
 import { usePathname } from "next/navigation"
-import { TbLayoutDashboardFilled, TbCards, TbCurrencyDollar, TbSettings } from "react-icons/tb";
+import { TbLayoutDashboardFilled, TbCards, TbCurrencyDollar, TbSettings, TbMusic, TbUsersGroup } from "react-icons/tb";
 
 const data = {
     user: {
@@ -25,13 +25,23 @@ const data = {
             icon: TbLayoutDashboardFilled,
         },
         {
-            title: "Catalog Status",
-            url: "/admin/catalog",
+            title: "Artist Management",
+            url: "/admin/artist_management",
+            icon: TbMusic,
+        },
+        {
+            title: "Investor Management",
+            url: "/admin/investor_management",
+            icon: TbUsersGroup,
+        },
+        {
+            title: "Catalog Management",
+            url: "/admin/catalog_management",
             icon: TbCards,
         },
         {
-            title: "Funds & Withdrawals",
-            url: "/admin/fund",
+            title: "Transactions",
+            url: "/admin/transactions",
             icon: TbCurrencyDollar,
         },
         {
